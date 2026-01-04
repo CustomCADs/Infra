@@ -5,24 +5,17 @@ This repository contains **all infrastructure-as-code (IaC)** for the CustomCADs
 It is the **single source of truth** for:
 - Backend infrastructure
 - Frontend infrastructure
-- Databases
-- Storage
-- DNS
-- Registries
-- Environment separation (staging, production, etc.)
+- Databases & Buckets
+- DNS & Zones
 
 ---
 
 ## 🧱 Responsibilities
+[Visualization](https://www.tldraw.com/p/cQaqnLtLWLu24pVfNvP6v?d=v1274.-173.1845.1462.page)
 
 This repo manages:
-- Backend infrastructure (Render Web Services)
-- PostgreSQL databases (Render)
-- Frontend hosting (Cloudflare Workers)
-- Object storage (Cloudflare R2)
-- Container registry configuration (DockerHub)
-- DNS & domain configuration (Namecheap)
-- Environment separation (staging, production)
+- Global infrastructure
+- Environment-specific infrastructure
 
 Application code **does not live here**.
 
@@ -32,28 +25,16 @@ Application code **does not live here**.
 
 ```txt
 Infra/
-├─ modules/                # Reusable Terraform modules (no state, no providers)
-│  ├─ db/
-│  ├─ backend/
-│  ├─ frontend/
-│  ├─ buckets/
-│  ├─ docker/
-│  └─ dns/
-│
-├─ environments/
-│  ├─ common/              # Global/shared infrastructure
-│  │  ├─ dns/
-│  │  └─ docker/
-│  │
-│  ├─ staging/             # Staging environment
-│  │  ├─ db/
-│  │  ├─ backend/
-│  │  ├─ frontend/
-│  │  └─ buckets/
-│  │
-│  └─ production/          # Production environment
-│     ├─ db/
-│     ├─ backend/
-│     ├─ frontend/
-│     └─ buckets/
+├─ global/              # Global/shared infrastructure
+├─ staging/             # Staging environment
+└─ production/          # Production environment
+   ├─ backend/
+      ├─ aws/
+      └─ render/
+   ├─ buckets/
+      ├─ aws/
+      └─ cloudflare/
+   └─ frontend/
+      ├─ aws/
+      └─ cloudflare/
 ```
