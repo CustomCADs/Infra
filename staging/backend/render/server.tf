@@ -1,7 +1,8 @@
 resource "render_web_service" "customcads_server" {
-  name   = "customcads-staging"
-  plan   = "free"
-  region = var.region
+  name           = "server_sta"
+  plan           = "starter"
+  region         = var.region
+  environment_id = data.terraform_remote_state.global_backend.outputs.project_staging_id
 
   runtime_source = {
     image = {
@@ -9,24 +10,14 @@ resource "render_web_service" "customcads_server" {
       tag       = "staging"
     }
   }
+  env_vars          = var.server_env
+  health_check_path = "/health"
 
   custom_domains = [
     {
       name = "staging.api.customcads.com"
-    },
-    {
-      name = "new.api.customcads.com"
     }
   ]
-
-  health_check_path = "/health"
-  environment_id    = data.terraform_remote_state.global_backend.outputs.project_staging_id
-
-  env_vars = var.server_env
-
-  previews = {
-    generation = "off"
-  }
 }
 
 import {

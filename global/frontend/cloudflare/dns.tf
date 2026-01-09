@@ -1,4 +1,3 @@
-# Zone/Domain
 resource "cloudflare_zone" "customcads_zone" {
   account = {
     id = var.account_id

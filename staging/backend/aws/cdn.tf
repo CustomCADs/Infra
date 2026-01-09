@@ -2,7 +2,6 @@ locals {
   origin_id = "eb-customcads_app"
 }
 
-# Staging CloudFront Distribution
 resource "aws_cloudfront_distribution" "customcads_cdn" {
   origin {
     domain_name = aws_elastic_beanstalk_environment.customcads_env.cname
