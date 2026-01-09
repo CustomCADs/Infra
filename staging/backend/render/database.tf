@@ -1,6 +1,6 @@
 resource "render_postgres" "customcads_database" {
-  name           = "customcads-staging"
-  plan           = "free"
+  name           = "database_sta"
+  plan           = "basic_256mb"
   region         = var.region
   environment_id = data.terraform_remote_state.global_backend.outputs.project_staging_id
 
