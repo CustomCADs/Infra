@@ -1,11 +1,13 @@
 resource "render_postgres" "customcads_database" {
   name           = "database_pro"
-  plan           = "basic_256mb"
   region         = var.region
   environment_id = data.terraform_remote_state.global_backend.outputs.project_production_id
 
+  plan         = "basic_256mb"
+  disk_size_gb = 1
+
   version       = 18
-  database_name = "customcads"
+  database_name = "customcads_production"
   database_user = "ninjatabg"
 
   ip_allow_list = [
@@ -14,7 +16,7 @@ resource "render_postgres" "customcads_database" {
       description = "Phone Hotstop"
     },
     {
-      cidr_block  = "192.168.1.23/32"
+      cidr_block  = "78.154.15.91/32"
       description = "Home in Sofia"
     },
     {
