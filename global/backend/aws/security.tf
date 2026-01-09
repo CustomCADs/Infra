@@ -1,4 +1,3 @@
-# Database
 resource "aws_security_group" "customcads_db_security_group" {
   vpc_id      = aws_vpc.customcads_vpc.id
   name        = "customcads-rds-sg"
@@ -19,7 +18,6 @@ resource "aws_security_group" "customcads_db_security_group" {
   ]
 }
 
-# Application
 resource "aws_security_group" "customcads_app_security_group" {
   vpc_id      = aws_vpc.customcads_vpc.id
   name        = "customcads-eb-sg"

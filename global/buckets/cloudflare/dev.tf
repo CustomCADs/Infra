@@ -1,4 +1,3 @@
-# User Files Bucket for Development
 resource "cloudflare_r2_bucket" "customcads_development_bucket" {
   account_id    = var.cloudflare_account_id
   name          = "customcads-development-bucket"

@@ -1,4 +1,15 @@
-# Subnets
+resource "aws_db_subnet_group" "customcads_subnet_group" {
+  name = "customcads-subnet-group"
+  subnet_ids = [
+    aws_subnet.customcads_subnet_public1_a.id,
+    aws_subnet.customcads_subnet_public2_b.id,
+    aws_subnet.customcads_subnet_public3_c.id,
+    aws_subnet.customcads_subnet_private1_a.id,
+    aws_subnet.customcads_subnet_private2_b.id,
+    aws_subnet.customcads_subnet_private3_c.id
+  ]
+}
+
 resource "aws_subnet" "customcads_subnet_public1_a" {
   vpc_id                  = aws_vpc.customcads_vpc.id
   cidr_block              = "10.0.0.0/20"
@@ -55,17 +66,4 @@ resource "aws_subnet" "customcads_subnet_private3_c" {
   tags = {
     Name = "customcads-subnet-private3-us-east-1c"
   }
-}
-
-# Subnet Group
-resource "aws_db_subnet_group" "customcads_subnet_group" {
-  name = "customcads-subnet-group"
-  subnet_ids = [
-    aws_subnet.customcads_subnet_public1_a.id,
-    aws_subnet.customcads_subnet_public2_b.id,
-    aws_subnet.customcads_subnet_public3_c.id,
-    aws_subnet.customcads_subnet_private1_a.id,
-    aws_subnet.customcads_subnet_private2_b.id,
-    aws_subnet.customcads_subnet_private3_c.id
-  ]
 }

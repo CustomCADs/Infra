@@ -1,4 +1,3 @@
-# RDS instance
 resource "aws_db_instance" "customcads_database" {
   identifier     = "customcads-production-db"
   db_name        = "CustomCADs_Production"
