@@ -1,6 +1,6 @@
 resource "render_web_service" "customcads_server" {
-  name           = "customcads-production"
-  plan           = "free"
+  name           = "server_pro"
+  plan           = "starter"
   region         = var.region
   environment_id = data.terraform_remote_state.global_backend.outputs.project_production_id
 
