@@ -6,7 +6,7 @@ resource "cloudflare_worker" "customcads_worker" {
     enabled = false
   }
   subdomain = {
-    enabled          = true
+    enabled          = false
     previews_enabled = true
   }
 }
