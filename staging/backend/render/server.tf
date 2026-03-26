@@ -4,6 +4,8 @@ resource "render_web_service" "customcads_server" {
   region         = var.region
   environment_id = data.terraform_remote_state.global_backend.outputs.project_staging_id
 
+  pre_deploy_command = "./full-migration.sh"
+
   runtime_source = {
     image = {
       image_url = "docker.io/customcads/backend"
@@ -18,9 +20,4 @@ resource "render_web_service" "customcads_server" {
       name = "staging.api.customcads.com"
     }
   ]
-}
-
-import {
-  to = render_web_service.customcads_server
-  id = "srv-d5086i56ubrc73aao1kg"
 }
