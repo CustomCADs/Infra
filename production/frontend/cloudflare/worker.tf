@@ -3,7 +3,13 @@ resource "cloudflare_worker" "customcads_worker" {
   name       = "customcads-production"
   logpush    = false
   observability = {
-    enabled = false
+    enabled            = true
+    head_sampling_rate = 1
+    logs = {
+      enabled            = true
+      invocation_logs    = true
+      head_sampling_rate = 1
+    }
   }
   subdomain = {
     enabled          = false
